@@ -71,6 +71,11 @@ jobs:
         with:
           name: dapr_${{ matrix.target_os }}_${{ matrix.target_arch }}
           path: ${{ env.ARCHIVE_OUTDIR }}
+      - name: upload grafana dashboards artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: dapr_grafana_dashboards
+          path: ./grafana/
       - name: docker login
         if: matrix.target_os != 'darwin' && github.event_name != 'pull_request'
         run: |
